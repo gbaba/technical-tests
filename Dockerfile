@@ -14,7 +14,12 @@ RUN go build -o golang-test .
 # Using run image
 FROM alpine
 
-#Copy binary file from buildhelper
+# Running application with non-root user
+RUN addgroup -g 1000 golang && \
+  adduser -D -u 1000 -G golang golang
+USER golang
+
+# Copy binary file from buildhelper
 WORKDIR /app
 COPY --from=buildhelper /app/golang-test .
 
