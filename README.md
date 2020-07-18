@@ -40,21 +40,18 @@ When a Dockerfile doesn’t specify a USER, it defaults to executing the contain
 - without token
 ```curl -i http://localhost:8000/```
 - output
-    ```HTTP/1.1 403 Forbidden
+    ```
+    HTTP/1.1 403 Forbidden
     Date: Sat, 18 Jul 2020 09:53:16 GMT
     Content-Length: 0
 
 - with the token
 ```curl -i -H "anz-x-token: todo-this-token-value-has-to-be-implemented-properly" http://localhost:8000/```
 - output
-    ```HTTP/1.1 200 OK
+    ```
+    HTTP/1.1 200 OK
     Date: Sat, 18 Jul 2020 09:52:51 GMT
     Content-Length: 13
     Content-Type: text/plain; charset=utf-8
 
     Hello, world.
-    
-
-
-
-
