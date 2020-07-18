@@ -29,7 +29,11 @@ func main() {
 }
 
 func helloworld(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, quote.HelloV3())
+	if validateauthtoken(r) { 
+		fmt.Fprintf(w, quote.HelloV3())
+	} else { 
+		w.WriteHeader(http.StatusForbidden)
+	}
 }
 
 func goquote(w http.ResponseWriter, r *http.Request) {
@@ -38,4 +42,9 @@ func goquote(w http.ResponseWriter, r *http.Request) {
 
 func opttruth(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, quote.GoV3())
+}
+
+func validateauthtoken(r *http.Request) bool {
+	token := r.Header.Get("anz-x-token")
+	return token == "todo-this-token-value-has-to-be-implemented-properly"
 }
